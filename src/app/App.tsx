@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from '../assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Navbar from '../components/Navbar/Navbar'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank" aria-label="Vite website">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" aria-label="React website">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount(count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <Navbar />
+      
+      <section id="home" className="min-h-screen flex items-center justify-center">
+        <h1 className="text-6xl font-bold">What the Sigma!?</h1>
+      </section>
 
+      {/* About Section */}
+      <section id="about" className="min-h-screen flex items-center justify-center bg-zinc-900">
+        <h1 className="text-6xl font-bold">I am the Omgea Rizzler</h1>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="min-h-screen flex items-center justify-center">
+        <h1 className="text-6xl font-bold">Bussin my dih on that gyatt!!!</h1>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="min-h-screen flex items-center justify-center bg-zinc-900">
+        <h1 className="text-6xl font-bold">Goonernation@gmail.com</h1>
+      </section>
+    </div>
+  );
+}
 export default App

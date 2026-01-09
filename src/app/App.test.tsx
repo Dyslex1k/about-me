@@ -1,51 +1,73 @@
-import { render, screen, fireEvent } from '@testing-library/react'
-import App from './App'
+import { describe, it, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
-describe('App Component', () => {
-  it('should render the app correctly', () => {
-    render(<App />)
+import App from './App';
 
-    // Check if Vite logo is in the document
-    expect(screen.getByAltText(/Vite logo/i)).toBeInTheDocument()
+describe('App', () => {
+  it('renders the Navbar component', () => {
+    render(<App />);
 
-    // Check if React logo is in the document
-    expect(screen.getByAltText(/React logo/i)).toBeInTheDocument()
+    const nav = screen.getByRole('navigation');
+    expect(nav).toBeInTheDocument();
+  });
 
-    // Check if the initial count is rendered correctly
-    expect(screen.getByText(/count is 0/i)).toBeInTheDocument()
-  })
+  it('renders the Home section', () => {
+    render(<App />);
 
-  it('should increment count when the button is clicked', () => {
-    render(<App />)
+    const heading = screen.getByRole('heading', {
+      name: 'What the Sigma!?',
+      level: 1,
+    });
 
-    const button = screen.getByRole('button', { name: /count is 0/i })
-    fireEvent.click(button)
-    expect(screen.getByText(/count is 1/i)).toBeInTheDocument()
-  })
+    expect(heading).toBeInTheDocument();
+    expect(heading.closest('section')).toHaveAttribute('id', 'home');
+  });
 
-  it('should render links correctly', () => {
-    render(<App />)
+  it('renders the About section', () => {
+    render(<App />);
 
-    // Check if the Vite link is present and has the correct href
-    const viteLink = screen.getByRole('link', { name: /Vite website/i })
-    expect(viteLink).toHaveAttribute('href', 'https://vite.dev')
-    expect(viteLink).toHaveAttribute('target', '_blank')
+    const heading = screen.getByRole('heading', {
+      name: 'I am the Omgea Rizzler',
+      level: 1,
+    });
 
-    // Check if the React link is present and has the correct href
-    const reactLink = screen.getByRole('link', { name: /React website/i })
-    expect(reactLink).toHaveAttribute('href', 'https://react.dev')
-    expect(reactLink).toHaveAttribute('target', '_blank')
-  })
+    expect(heading).toBeInTheDocument();
+    expect(heading.closest('section')).toHaveAttribute('id', 'about');
+  });
 
-  it('should render the instruction to edit src/App.tsx', () => {
-    render(<App />)
+  it('renders the Projects section', () => {
+    render(<App />);
 
-    // Check if the <code> element is present
-    const codeElement = screen.getByText('src/App.tsx')
-    expect(codeElement).toBeInTheDocument()
+    const heading = screen.getByRole('heading', {
+      name: 'Bussin my dih on that gyatt!!!',
+      level: 1,
+    });
 
-    // Also check for the rest of the instruction text
-    const instruction = screen.getByText(/Edit.*and save to test HMR/)
-    expect(instruction).toBeInTheDocument()
-  })
-})
+    expect(heading).toBeInTheDocument();
+    expect(heading.closest('section')).toHaveAttribute('id', 'projects');
+  });
+
+  it('renders the Contact section', () => {
+    render(<App />);
+
+    const heading = screen.getByRole('heading', {
+      name: 'Goonernation@gmail.com',
+      level: 1,
+    });
+
+    expect(heading).toBeInTheDocument();
+    expect(heading.closest('section')).toHaveAttribute('id', 'contact');
+  });
+
+  it('renders all main sections', () => {
+    render(<App />);
+
+    const sections = ['home', 'about', 'projects', 'contact'];
+
+    sections.forEach((id) => {
+      const section = document.querySelector(`section#${id}`);
+      expect(section).toBeInTheDocument();
+    });
+  });
+});

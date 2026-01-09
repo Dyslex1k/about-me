@@ -31,3 +31,5 @@ jobs:
       - name: Run tests
         run: npm test
 
+      - name: Run tests with coverage (80% required)
+        run: npm run test:coverage
